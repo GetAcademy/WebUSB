@@ -35,8 +35,8 @@ async function talkToArduino() {
       document.getElementById('targetA').innerHTML = 'Error: ' + error;
     });
 
-    wait(5000);
-
+    //wait(5000);
+    /*
     let device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x2341 }] });
     await device.open(); // Begin a session.
     await device.selectConfiguration(1); // Select configuration #1 for the device.
@@ -53,7 +53,7 @@ async function talkToArduino() {
     let result = device.transferIn(5, 64); // Waiting for 64 bytes of data from endpoint #5.
     let decoder = new TextDecoder();
     document.getElementById('targetB').innerHTML = 'Received: ' + decoder.decode(result.data);
-
+    */
   } catch (error) {
     document.getElementById('targetB').innerHTML = error;
   }
