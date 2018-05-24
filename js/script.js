@@ -7,6 +7,8 @@
 //   }
 // };
 
+const VENDOR_ID = 0x05c6;
+
 document.getElementById('arduinoButton').addEventListener('click', function (event) {
   if (navigator.usb) {
     talkToArduino();
@@ -23,16 +25,26 @@ function donothing() {
 
 }
 
+navigator.usb.addEventListener('connect', event => {
+  // Add |event.device| to the UI.
+  document.getElementById('targetA').innerHTML = 'Device added: ' + event.device.productName + ", " + event.device.manufacturerName;
+});
+
+navigator.usb.addEventListener('disconnect', event => {
+  // Remove |event.device| from the UI.
+  document.getElementById('targetA').innerHTML = 'Device removed: ' + event.device.productName + ", " + event.device.manufacturerName;
+});
+
 async function talkToArduino() {
   try {
-    navigator.usb.requestDevice({ filters: [{ vendorId: 0x05c6 }] })
+    navigator.usb.requestDevice({ filters: [{ vendorId: VENDOR_ID }] })
     .then(device => {
       // console.log(device.productName);      // "Arduino Micro"
       // console.log(device.manufacturerName); // "Arduino LLC"
       document.getElementById('targetA').innerHTML = 'Received: ' + device.productName + ", " + device.manufacturerName;
     })
     .catch(error => { 
-      document.getElementById('targetA').innerHTML = 'Error: ' + error;
+      document.getElementById('targetA').innerHTML = "Error (vendorId=" + VENDOR_ID + "): " + error;
     });
 
     //wait(5000);
