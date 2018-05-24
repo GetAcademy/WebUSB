@@ -25,7 +25,7 @@ function donothing() {
 
 async function talkToArduino() {
   try {
-    navigator.usb.requestDevice({ filters: [{ vendorId: 0x2341 }] })
+    navigator.usb.requestDevice({ filters: [{ vendorId: 0x05c6 }] })
     .then(device => {
       // console.log(device.productName);      // "Arduino Micro"
       // console.log(device.manufacturerName); // "Arduino LLC"
