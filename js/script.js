@@ -37,7 +37,8 @@ navigator.usb.addEventListener('disconnect', event => {
 
 async function talkToArduino() {
   try {
-    navigator.usb.requestDevice({ filters: [{ vendorId: VENDOR_ID }] })
+    //navigator.usb.requestDevice({ filters: [{ vendorId: VENDOR_ID }] })
+    navigator.usb.requestDevice({ filters: [] })
     .then(device => {
       // console.log(device.productName);      // "Arduino Micro"
       // console.log(device.manufacturerName); // "Arduino LLC"
