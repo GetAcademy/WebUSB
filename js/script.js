@@ -39,7 +39,6 @@ async function talkToArduino() {
   try {
     //navigator.usb.requestDevice({ filters: [{ vendorId: VENDOR_ID }] })
     navigator.usb.requestDevice({ 
-      name: "usb", 
       filters: [] 
     })
     .then(device => {
